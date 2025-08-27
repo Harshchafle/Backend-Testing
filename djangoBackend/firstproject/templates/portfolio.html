@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Our Portfolio 💼</h1>
+        <p>Here are some of the projects we've worked on:</p>
+        <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
+            <li>🌐 Responsive Web Design</li>
+            <li>📱 Mobile App UI/UX</li>
+            <li>🔒 Secure Django Backend</li>
+        </ul>
+        <div class="greeting" id="greeting"></div>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    <script>
+        function showGreeting() {
+                const hour = new Date().getHours();
+                let message = "";
+
+                if (hour < 12) {
+                    message = "Good morning! ☀️";
+                } else if (hour < 18) {
+                    message = "Good afternoon! 🌤️";
+                } else {
+                    message = "Good evening! 🌙";
+                }
+
+                document.getElementById("greeting").textContent = message;
+            }
+
+            function toggleTheme() {
+                document.body.classList.toggle("dark");
+                localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+            }
+
+            (function applySavedTheme() {
+                if (localStorage.getItem("theme") === "dark") {
+                    document.body.classList.add("dark");
+                }
+            })();
+
+            window.onload = showGreeting;
+
+    </script>
+</body>
+
+</html>

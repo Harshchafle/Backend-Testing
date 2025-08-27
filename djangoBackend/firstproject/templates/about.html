@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>About Us 👥</h1>
+        <p>We are passionate developers dedicated to building user-friendly web experiences.</p>
+        <p>This site demonstrates Django templates, interactive JavaScript, and responsive design.</p>
+        <div class="greeting" id="greeting"></div>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    <script>
+        function showGreeting() {
+                const hour = new Date().getHours();
+                let message = "";
+
+                if (hour < 12) {
+                    message = "Good morning! ☀️";
+                } else if (hour < 18) {
+                    message = "Good afternoon! 🌤️";
+                } else {
+                    message = "Good evening! 🌙";
+                }
+
+                document.getElementById("greeting").textContent = message;
+            }
+
+            function toggleTheme() {
+                document.body.classList.toggle("dark");
+                localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+            }
+
+            (function applySavedTheme() {
+                if (localStorage.getItem("theme") === "dark") {
+                    document.body.classList.add("dark");
+                }
+            })();
+
+            window.onload = showGreeting;
+
+    </script>
+</body>
+
+</html>

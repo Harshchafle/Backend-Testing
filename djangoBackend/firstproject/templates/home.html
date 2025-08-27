@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Site!</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hello, Django! 👋</h1>
+        <p>This is the home page. We're using Django's templating system to show a beautiful UI instead of plain text.
+        </p>
+        <p>Navigate to other pages using your browser's address bar to see more examples.</p>
+        <div class="greeting" id="greeting"></div>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+    <script>
+        // Dynamic greeting based on time
+        function showGreeting() {
+            const hour = new Date().getHours();
+            let message = "";
+
+            if (hour < 12) {
+                message = "Good morning! ☀️";
+            } else if (hour < 18) {
+                message = "Good afternoon! 🌤️";
+            } else {
+                message = "Good evening! 🌙";
+            }
+
+            document.getElementById("greeting").textContent = message;
+        }
+
+        // Theme toggle
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+
+            // Save preference in localStorage
+            if (document.body.classList.contains("dark")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+        // Apply saved theme
+        (function applySavedTheme() {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark");
+            }
+        })();
+
+        // Initialize greeting on load
+        window.onload = showGreeting;
+    </script>
+</body>
+
+</html>

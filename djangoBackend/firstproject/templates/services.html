@@ -1,0 +1,183 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #4A90E2;
+            --bg: #f9f9f9;
+            --card-bg: #ffffff;
+            --text: #222;
+            --text-light: #555;
+        }
+
+        body.dark {
+            --primary: #ff6b6b;
+            --bg: #1e1e1e;
+            --card-bg: #2b2b2b;
+            --text: #f0f0f0;
+            --text-light: #ccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 40px 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            font-size: 2.8rem;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: #333;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .card i {
+                font-size: 2rem;
+            }
+
+            .theme-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🚀 Our Services Dashboard</h1>
+
+    <div class="dashboard">
+        <div class="card">
+            <i class="fas fa-laptop-code"></i>
+            <h3>Web Development</h3>
+            <p>We build responsive, fast, and scalable websites using the latest tech stacks.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-mobile-alt"></i>
+            <h3>Mobile Apps</h3>
+            <p>Android & iOS apps designed with beautiful UIs and smooth UX flows.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-cloud"></i>
+            <h3>Cloud Services</h3>
+            <p>Deploy and scale your applications with AWS, GCP, and Azure cloud solutions.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Cybersecurity</h3>
+            <p>Protect your business with state-of-the-art security audits and solutions.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-search"></i>
+            <h3>SEO Optimization</h3>
+            <p>Improve your search rankings and drive traffic with our SEO best practices.</p>
+        </div>
+
+        <div class="card">
+            <i class="fas fa-headset"></i>
+            <h3>24/7 Support</h3>
+            <p>Round-the-clock technical support to ensure your services stay online.</p>
+        </div>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        (function applyTheme() {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+            }
+        })();
+    </script>
+</body>
+
+</html>
